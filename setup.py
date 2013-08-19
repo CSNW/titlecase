@@ -1,8 +1,13 @@
 import os
 import sys
 
-from ez_setup import use_setuptools
-use_setuptools()
+try:
+    from ez_setup import use_setuptools
+except ImportError:
+    # May be running from pip; ignore.
+    pass
+else:
+    use_setuptools()
 
 from setuptools import setup, find_packages
 
@@ -14,7 +19,7 @@ sys.path.insert(0, here)
 from titlecase import __version__
 
 setup(name='titlecase',
-    version=__version__,
+    version=__version__ + '-csnw',
     description="Python Port of John Gruber's titlecase.pl",
     long_description=README,
     classifiers=[
